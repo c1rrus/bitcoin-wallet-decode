@@ -29,7 +29,7 @@ SEED_OUTPUT_FILE="${HOST_WALLET_FILE}-seed.txt"
 PRIVATE_KEYS_OUTPUT_FILE="${HOST_WALLET_FILE}-private-keys.txt"
 
 echo "Copying seed & private key files back to host..."
-docker cp "${CONTAINER_ID}:${CONTAINER_WALLET_FILE}-file-seed.txt" "$SEED_OUTPUT_FILE"
+docker cp "${CONTAINER_ID}:${CONTAINER_WALLET_FILE}-seed.txt" "$SEED_OUTPUT_FILE"
 docker cp "${CONTAINER_ID}:${CONTAINER_WALLET_FILE}-private-keys.txt" "$PRIVATE_KEYS_OUTPUT_FILE"
 
 echo "Deleting wallet, seed & private key files from container..."
