@@ -32,7 +32,9 @@ fi
 # Dump private keys
 echo "Dumping private keys"
 DUMPED_KEYS_FILE=$(mktemp)
-/app/bitcoinj/tools/wallet-tool dump --dump-privkeys --wallet="$DECRYPTED_WALLET_FILE" > "$DUMPED_KEYS_FILE"
+pushd /app/bitcoinj/tools
+./wallet-tool dump --dump-privkeys --wallet="$DECRYPTED_WALLET_FILE" > "$DUMPED_KEYS_FILE"
+popd
 
 if [ $? -ne 0 ]
 then
