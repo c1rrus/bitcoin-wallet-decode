@@ -15,7 +15,7 @@ ENCRYPTED_WALLET_FILE="$1"
 # Decrypt wallet file (will prompt user for password)
 echo "Decrypting wallet file: $ENCRYPTED_WALLET_FILE"
 DECRYPTED_WALLET_FILE=$(mktemp)
-openssl enc -d -aes-256-cbc -a -in "$ENCRYPTED_WALLET_FILE" -out "$DECRYPTED_WALLET_FILE"
+openssl enc -d -aes-256-cbc -md md5 -a -in "$ENCRYPTED_WALLET_FILE" -out "$DECRYPTED_WALLET_FILE"
 
 if [ $? -ne 0 ]
 then
