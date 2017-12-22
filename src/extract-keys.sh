@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This script is intended to be run *within* the container that is
+# defined by this project's Dockerfile.
+
+
 if [ "$1" == "" ]
 then
     echo "You must provide the path to your encrypted wallet file:" >&2
@@ -32,9 +36,9 @@ fi
 # Dump private keys
 echo "Dumping private keys"
 DUMPED_KEYS_FILE=$(mktemp)
-pushd /app/bitcoinj/tools
+pushd /app/bitcoinj/tools > /dev/null
 ./wallet-tool dump --dump-privkeys --wallet="$DECRYPTED_WALLET_FILE" > "$DUMPED_KEYS_FILE"
-popd
+popd > /dev/null
 
 if [ $? -ne 0 ]
 then
@@ -64,7 +68,5 @@ sed -i 's/WIF=//g' "$PRIVATE_KEYS_OUTPUT_FILE"
 rm "$DUMPED_KEYS_FILE"
 
 # All done! ^_^
+echo "Saved seed & private-keys text files."
 echo "Finished!"
-echo
-echo "Seeds are in:              $SEED_OUTPUT_FILE"
-echo "Private keys (WIF) are in: $PRIVATE_KEYS_OUTPUT_FILE"

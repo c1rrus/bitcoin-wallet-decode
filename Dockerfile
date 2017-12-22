@@ -15,8 +15,9 @@ RUN git clone -b release-0.14 https://github.com/bitcoinj/bitcoinj.git
 WORKDIR bitcoinj
 RUN mvn clean install -DskipTests
 
-# Copy shell script to container
-ADD extract-keys.sh /app
+# Copy shell scripts to container
+ADD src/extract-keys.sh /app
+ADD src/clean-up.sh /app
 
 # Switch to a temp dir
 WORKDIR /app
