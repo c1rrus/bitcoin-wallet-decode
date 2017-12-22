@@ -36,9 +36,10 @@ echo "Deleting wallet, seed & private key files from container..."
 docker exec -ti $CONTAINER_ID /app/clean-up.sh "${CONTAINER_WALLET_FILE}"
 
 echo "Stopping container..."
-docker stop $CONTAINER_ID
+docker stop $CONTAINER_ID > /dev/null
 
 echo "DONE!"
 echo
 echo "Seeds are in:              $SEED_OUTPUT_FILE"
 echo "Private keys (WIF) are in: $PRIVATE_KEYS_OUTPUT_FILE"
+echo
