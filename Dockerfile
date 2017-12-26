@@ -4,8 +4,9 @@ FROM openjdk:8-jdk
 
 # Install OpenJFX & Maven
 # (OpenSSL & git are already in the base image)
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends openjfx maven
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    maven \
+    openjfx
 
 # Clone BitcoinJ v0.14 to /local/bitcoinj
 WORKDIR /app
@@ -16,8 +17,8 @@ WORKDIR bitcoinj
 RUN mvn clean install -DskipTests
 
 # Copy shell scripts to container
-ADD src/extract-keys.sh /app
-ADD src/clean-up.sh /app
+COPY src/extract-keys.sh /app
+COPY src/clean-up.sh /app
 
 # Switch to a temp dir
 WORKDIR /app
