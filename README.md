@@ -37,8 +37,10 @@ You need to perform this setup step only once. After that, you can run the tool 
 
 1. Git clone this repo
 1. Navigate into the cloned repo
-1. Build the Docker image by running `./build.sh`
-    * Note: On Linux systems you may need to do `sudo ./build.sh` as Docker commands typically need to be run as sudo.
+1. Pull or build the Docker image
+    * EITHER pull the pre-built Docker image: `docker pull c1rrus/bitcoin-wallet-decode`
+    * OR Build the Docker image yourself by running `./build.sh`
+        * Note: On Linux systems you may need to do `sudo ./build.sh` as Docker commands typically need to be run as sudo.
 
 
 ## <a name="running"></a>Running the tool
@@ -49,6 +51,7 @@ Then...
 
 1. Navigate into the cloned repo (if you're not already there)
 1. Run `./bitcoin-wallet-decode.sh path/to/your/wallet-backup`
+    * Note: This tool runs entirely on your computer, so you can use it offline if you wish
 1. You will be prompted for a password. This is the "backup password" you set in the Android Bitcoin Wallet app.
 
 That's it! Once the process has completed, you should find 2 new files in the same directory as your `wallet-backup` file:
